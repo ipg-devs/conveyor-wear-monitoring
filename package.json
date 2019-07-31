@@ -1,0 +1,35 @@
+{
+  "name": "sensor_dashboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "development-client": "cd client && npm run start",
+    "development-server": "cd server && npm run dev",
+    "development-worker": "cd worker && npm run dev",
+    "dev": "concurrently \"npm run development-*\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.1",
+    "nodemon": "^1.19.1"
+  },
+  "dependencies": {
+    "amqplib": "^0.5.5",
+    "awilix": "^4.2.2",
+    "cookie-parser": "^1.4.4",
+    "cors": "^2.8.5",
+    "debug": "^4.1.1",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "is-email": "^1.0.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment": "^2.24.0",
+    "morgan": "^1.9.1",
+    "pg": "^7.12.0",
+    "superstruct": "^0.6.1",
+    "trike": "^1.1.3"
+  }
+}
