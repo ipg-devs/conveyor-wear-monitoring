@@ -42,10 +42,7 @@ class Api {
       .then(res => {
         const { data } = res;
 
-        return {
-          columns: Object.keys(data[0]),
-          rows: data
-        };
+        return data;
       });
   };
 
@@ -124,6 +121,26 @@ class Api {
       })
       .then(res => res.data);
   };
+
+  createNewSite = (site) => {
+    const [err, token] = trike(() => localStorage.getItem("token"));
+
+    if (err) {
+      localStorage.removeItem("token");
+      return Promise.reject(err);
+    }
+    return this.api
+      .post(
+        "site/create",
+        { ...site },
+        {
+          headers: {
+            authorization: `bearer ${token}`
+          }
+        }
+      )
+      .then(res => res.data);
+  }
 }
 
 export default new Api();

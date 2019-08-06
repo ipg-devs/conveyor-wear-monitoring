@@ -14,14 +14,21 @@ module.exports = () => ({
 
     if (err) throw err;
 
-    return result.rows;
+    return result.rows[0];
   },
-  getByUsername: async username => {
-    const [err, result] = await trike(() => db.query('SELECT salt, password FROM bwmsusers WHERE username = $1', [username]))
+  getUserInfoByUsername: async ({username}) => {
+    const [err, result] = await trike(() => db.query('SELECT username,id,email,site_id,admin FROM bwmsusers WHERE username = $1', [username]))
 
     if (err) throw err;
 
-    return result.rows;
+    return result.rows[0];
+  },
+  getByUsername: async username => {
+    const [err, result] = await trike(() => db.query('SELECT username,id,email,site_id,admin,salt, password FROM bwmsusers WHERE username = $1', [username]))
+
+    if (err) throw err;
+
+    return result.rows[0];
   },
   create: async user => {
     const {

@@ -3,9 +3,12 @@ const trike = require('trike');
 const moment = require('moment');
 
 module.exports = message => {
-  const [err, client] = trike(() => new Client({
+  const [err, client] = trike(() => process.env.ENV === "produciton" ? new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  }) : new Client({
     connectionString: "postgres://devansisson:01234@127.0.0.1:5432/devansisson",
-  }));
+  });
 
   if (err) {console.log(err); throw err}
   

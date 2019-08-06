@@ -15,11 +15,19 @@ module.exports = () => ({
       }, [])
     }
 
-    return rows;
+    return rows.reduce((flatArray, objectRow)=> {
+      flatArray.push(objectRow.message)
+
+      return flatArray
+    },[]);
   },
   getAllData: async () => {
     const { rows } = await db.query('SELECT message from bwmsmessages WHERE timestamp > to_timestamp($1)', [moment().subtract(15, 'minutes').unix()]);
-    return rows;
+    return rows.reduce((flatArray, objectRow)=> {
+      flatArray.push(objectRow.message)
+
+      return flatArray
+    },[]);
   },
   deleteData: async () => await db.query('DELETE FROM bwmsmessages WHERE id > 0')
 })

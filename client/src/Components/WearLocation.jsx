@@ -12,10 +12,14 @@ const Wear = styled.div`
   background-color: ${props => colors[props.value]};
 `;
 
-export default ({ values }) => (
+export default ({ values }) => 
+{
+  return values ? (
   <WearLocationWrapper>
     {values.map((color, i) => (
       <Wear key ={i} value={color} />
     ))}
-  </WearLocationWrapper>
-);
+  </WearLocationWrapper>): (
+    <div>ERROR</div>
+  )
+};

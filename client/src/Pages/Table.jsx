@@ -31,14 +31,9 @@ const useStyles = makeStyles(theme => ({
 
 const TablePage = ({ history, enqueueSnackbar }) => {
   const { state, dispatch } = useContext(Store);
-  const {
-    tableData: { columns, rows },
-    loading,
-    loggingOut
-  } = state;
+  const { tableRows, tableColumns, tableOrder, loading, loggingOut } = state;
 
   useEffect(() => {
-
     if (loggingOut) return history.push("/");
     dispatch({
       field: "loading",
@@ -48,7 +43,7 @@ const TablePage = ({ history, enqueueSnackbar }) => {
       .getTableData()
       .then(data => {
         dispatch({
-          field: "tableData",
+          field: "tableRows",
           payload: data
         });
         dispatch({
@@ -84,7 +79,7 @@ const TablePage = ({ history, enqueueSnackbar }) => {
         <Table className={classes.table}>
           <TableHead>
             <TableRow>
-              {columns.map(col => (
+              {tableColumns.map(col => (
                 <TableCell key={col}>
                   {wearDepths.includes(col)
                     ? col
@@ -94,9 +89,9 @@ const TablePage = ({ history, enqueueSnackbar }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {rows.map((row, i) => (
+            {tableRows.map((row, i) => (
               <TableRow key={i}>
-                {Object.keys(row).map(col => (
+                {tableOrder.map(col => (
                   <TableCell key={`${col}${i}`}>
                     <Cell variant={col} value={row[col]} />
                   </TableCell>

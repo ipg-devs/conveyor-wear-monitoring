@@ -18,8 +18,8 @@ siteRouter
     );
 
     if (e) return next(e);
-    const { name } = req.body.Site;
-    const [err, result] = await trike(() => createSite({ name }));
+    const { name, contact } = req.body;
+    const [err, result] = await trike(() => createSite({ name, contact }));
 
     if (err) return next(err);
     return res.json(result);

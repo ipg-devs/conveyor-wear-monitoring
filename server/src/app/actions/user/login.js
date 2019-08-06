@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import trike from "trike";
 
-const login = ({ authenticateUser }) => async user => {
+const login = ({ authenticateUser, userRepo }) => async user => {
   const [err, result] = await trike(() => authenticateUser(user));
 
   if (err) throw err;
@@ -11,9 +11,16 @@ const login = ({ authenticateUser }) => async user => {
     throw error;
   }
 
-  return await jwt.sign({ user: user.username }, process.env.JWT_SECRET, {
+  const [userErr, userRes] = await trike(() => userRepo.getUserInfoByUsername(user))
+
+  const token = await jwt.sign({ user: user.username }, process.env.JWT_SECRET, {
     expiresIn: "10h"
   });
+
+  return {
+    user: userRes,
+    token
+  };
 };
 
 export default login;

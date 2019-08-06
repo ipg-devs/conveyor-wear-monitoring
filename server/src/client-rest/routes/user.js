@@ -65,13 +65,10 @@ userRouter
     const getUserByUsername = req.scope.resolve("getUserByUsername")
     const { username, password } = req.body;
 
-    const [err1, token] = await trike(() => login({ username, password }));
+    const [err, { token, user }] = await trike(() => login({ username, password }));
 
-    if (err1) return next(err1);
+    if (err) return next(err);
 
-    const [err2, user] = await trike(()=> getUserByUsername(username))
-
-    if (err2) return next(err2)
 
     return res.json({ token, user });
   });

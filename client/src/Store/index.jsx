@@ -20,9 +20,22 @@ const initialState = {
   loggedInUser: {
     admin: checkAdmin()
   },
-  tableData: {
-    columns: [
-      "Timetamp",
+  tableOrder: [
+      "timestamp",
+      "siteid",
+      "target",
+      "revolutions",
+      "hours",
+      "1/16",
+      "1/8",
+      "1/4",
+      "location",
+      "tracking",
+      "note",
+      "event"
+    ],
+  tableColumns: [
+      "Timestamp",
       "Site Id",
       "Target",
       "Revolutions",
@@ -35,7 +48,7 @@ const initialState = {
       "Note",
       "Event"
     ],
-    rows: [
+  tableRows: [
       {
         Timetamp: "--/--/----",
         "Site Id": 0,
@@ -67,8 +80,7 @@ const initialState = {
         Note: "n/a",
         Event: "n/a"
       }
-    ]
-  },
+    ],
   users: [],
   sites: []
 };

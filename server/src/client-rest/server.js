@@ -12,10 +12,13 @@ const rootHandler = rootRoute[environment];
 
 const container = DIContainer();
 
+
 module.exports = (port = 5000) => {
   const app = express();
 
-  app.use(cors());
+  app.use(cors({
+    origin: /\.pink-shrimp-90\.telebit\.io$/
+  }));
   app.use((req, _res, next) => {
     req.scope = container.createScope();
     return next();
