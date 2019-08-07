@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "JWT_SECRET=Super-Secret-Secret nodemon --exec babel-node ./bin/www",
-    "start": "node ./bin/www"
+    "build": "babel src --out-dir server"
+  
   },
   "dependencies": {
     "awilix": "^4.2.2",

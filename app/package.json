@@ -1,22 +1,14 @@
 {
-  "name": "sensor_dashboard",
+  "name": "app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "development-client": "cd client && npm run start",
-    "development-server": "cd server && npm run dev",
-    "development-worker": "cd worker && npm run dev",
-    "dev": "concurrently \"npm run development-*\"",
-    "deploy": "./deploy.sh"
+    "start-server": "node ./bin/www",
+    "start-worker": "node ./worker"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "concurrently": "^4.1.1",
-    "nodemon": "^1.19.1"
-  },
   "dependencies": {
     "amqplib": "^0.5.5",
     "awilix": "^4.2.2",

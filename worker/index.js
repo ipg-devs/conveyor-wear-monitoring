@@ -1,5 +1,5 @@
 const amqp = require('amqplib/callback_api');
-const saveMessage = require('./lib/saveMessage')
+const saveMessage = require('./saveMessage')
 
 const CONN_URL = process.env.AMQP_URL;
 const BELT_TOPIC = process.env.BELT_TOPIC || 'cloud_conv';

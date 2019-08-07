@@ -1,0 +1,3 @@
+release: ./release.sh
+web: npm start-server
+amqp-worker: npm start-worker
