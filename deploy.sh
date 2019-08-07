@@ -9,6 +9,8 @@ mkdir deploy; echo "Making new folder"
 cp -r app/bin deploy
 cp -r app/scripts deploy
 cp app/package.json deploy
+cp app/Procfile deploy
+cp app/release.sh deploy
 
 # copy worker into deploy dir
 mkdir deploy/worker;
