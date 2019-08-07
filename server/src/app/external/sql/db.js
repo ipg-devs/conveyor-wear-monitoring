@@ -2,7 +2,7 @@ const { Pool } = require('pg');
 
 
 
-const pool = process.env.ENV === "produciton" ? new Pool({
+const pool = process.env.NODE_ENV === "produciton" ? new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true
 }) : new Pool({

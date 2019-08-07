@@ -3,7 +3,7 @@ const trike = require('trike');
 const moment = require('moment');
 
 module.exports = message => {
-  const [err, client] = trike(() => process.env.ENV === "produciton" ? new Client({
+  const [err, client] = trike(() => process.env.NODE_ENV === "produciton" ? new Client({
     connectionString: process.env.DATABASE_URL,
     ssl: true
   }) : new Client({

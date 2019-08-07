@@ -3,14 +3,22 @@ import cors from "cors";
 import DIContainer from "../app/main";
 import apiRoutes from "./routes";
 import requestLogger from './middleware/request-logger';
-import rootRoute from './routes/rootRoute';
 import process from 'process'
+import path from "path";
 
-const environment = process.env.ENV || 'development'
-
-const rootHandler = rootRoute[environment];
+const environment = process.env.NODE_ENV || 'development'
 
 const container = DIContainer();
+
+function rootHandler(app){
+  if (environment === "production"){
+    app.use(express.static(path.join(__dirname,'../../public')))
+  } else {
+    app.get("/", (req, res) => {
+      res.send("hello");
+    });
+  }
+}
 
 
 module.exports = (port = 5000) => {
@@ -26,7 +34,7 @@ module.exports = (port = 5000) => {
   app.use(express.json());
   app.use(requestLogger);
 
-  app.get("/", rootHandler);
+  rootHandler(app);
   app.use("/api", apiRoutes);
 
   // Error handling middleware
