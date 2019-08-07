@@ -3,7 +3,7 @@ const moment = require('moment');
 
 module.exports = () => ({
   getDataByIds: async (site_ids) => {
-    const { rows } = await db.query('SELECT message from bwmsmessages WHERE timestamp > to_timestamp($1)', [moment().subtract(15, 'minutes').unix()])
+    const { rows } = await db.query('SELECT message from bwmsmessages WHERE timestamp > to_timestamp($1) LIMIT 10', [moment().subtract(15, 'minutes').unix()])
 
     if (site_ids) {
       return rows.reduce((acc, curr) => {

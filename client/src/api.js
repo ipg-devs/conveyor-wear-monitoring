@@ -1,11 +1,12 @@
 import axios from "axios";
 import trike from "trike";
 
+
 class Api {
-  constructor() {
+  constructor(baseUrl) {
     this.api = axios.create({
-      baseURL: "https://5000.pink-shrimp-90.telebit.io/api/"
-    }); // TODO: need to make this a env var?
+      baseURL: baseUrl
+    });
   }
 
   login = (username, password) =>
@@ -36,7 +37,7 @@ class Api {
     return this.api
       .get("bwms/", {
         headers: {
-          authorization: `bearer ${token}`
+          authorization: `bearer ${ token }`
         }
       })
       .then(res => {
@@ -57,7 +58,7 @@ class Api {
     return this.api
       .get("user/", {
         headers: {
-          authorization: `bearer ${token}`
+          authorization: `bearer ${ token }`
         }
       })
       .then(res => res.data);
@@ -77,7 +78,7 @@ class Api {
         { ...user },
         {
           headers: {
-            authorization: `bearer ${token}`
+            authorization: `bearer ${ token }`
           }
         }
       )
@@ -98,7 +99,7 @@ class Api {
         { username, newPassword },
         {
           headers: {
-            authorization: `bearer ${token}`
+            authorization: `bearer ${ token }`
           }
         }
       )
@@ -116,7 +117,7 @@ class Api {
     return this.api
       .get("site", {
         headers: {
-          authorization: `bearer ${token}`
+          authorization: `bearer ${ token }`
         }
       })
       .then(res => res.data);
@@ -135,7 +136,7 @@ class Api {
         { ...site },
         {
           headers: {
-            authorization: `bearer ${token}`
+            authorization: `bearer ${ token }`
           }
         }
       )
@@ -143,4 +144,6 @@ class Api {
   }
 }
 
-export default new Api();
+
+ // TODO: set BASE_URL in client/package.json
+export default new Api(process.env.BASE_URL || "https://ipg-app.herokuapp.com/api/");

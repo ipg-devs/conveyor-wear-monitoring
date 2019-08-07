@@ -4,7 +4,7 @@
  * Module dependencies.
  */
 
-const createServer = require('../src/client-rest/server');
+const createServer = require('../src/server');
 const debug = require('debug')('server:server');
 const http = require('http');
 

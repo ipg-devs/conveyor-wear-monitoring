@@ -12,14 +12,14 @@ userRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .get("/:id", async (req, res, next) => {
+  .get("/:id", verifyToken, async (req, res, next) => {
     const getUserById = req.scope.resolve("getUserById");
     const [err, result] = await trike(() => getUserById(req.param.id));
 
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/create", async (req, res, next) => {
+  .post("/create", verifyToken, async (req, res, next) => {
     const [e1, createUser] = trike(() => req.scope.resolve("createUser"));
 
     if (e1) return next(e1);
@@ -31,7 +31,7 @@ userRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/update", async (req, res, next) => {
+  .post("/update", verifyToken, async (req, res, next) => {
     const updateUser = req.scope.resolve("updateUser");
     const [err, result] = await trike(() => updateUser(req.body.user));
 
@@ -52,7 +52,7 @@ userRouter
     console.log(result);
     res.send({ success: true });
   })
-  .post("/destroy", async (req, res, next) => {
+  .post("/destroy", verifyToken, async (req, res, next) => {
     const destroyUser = req.scope.resolve("destroyUser");
     const { id } = req.body.userToDelete;
     const [err, result] = await trike(() => destroyUser(id));

@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
 
 const SitePanel = () => {
   const { state } = useContext(Store);
-  const { sites, users } = state;
+  const { sites } = state;
   const classes = useStyles();
   const [expanded, setExpanded] = useState("0");
   const [addModal, setAddModal] = useState(false);

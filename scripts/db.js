@@ -45,7 +45,7 @@ const { db,
 
   console.log(`SEED username is ${ seedUsername }`)
 
-  const [siteSeedNotFound, seedUsername] = checkForSeeds.site(db)
+  const [siteSeedNotFound, seedSite] = checkForSeeds.site(db)
 
   if (siteSeedNotFound) {
     const [errSeedingSite] = seedSite(db);

@@ -12,7 +12,7 @@ siteRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/create", async (req, res, next) => {
+  .post("/create", verifyToken, async (req, res, next) => {
     const [e, createSite] = trike(() =>
       req.scope.resolve("createSite")
     );
@@ -24,14 +24,14 @@ siteRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/update", async (req, res, next) => {
+  .post("/update", verifyToken, async (req, res, next) => {
     const updateSite = req.scope.resolve("updateSite");
     const [err, result] = await trike(() => updateSite(req.body.Site));
 
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/:id", async (req, res, next) => {
+  .post("/:id", verifyToken, async (req, res, next) => {
     const destroySite = req.scope.resolve("destroySite");
     const [err, result] = await trike(() => destroySite(req.param.id));
 

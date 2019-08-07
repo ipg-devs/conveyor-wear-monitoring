@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import DIContainer from "../app/main";
-import apiRoutes from "./routes";
-import requestLogger from './middleware/request-logger';
+import DIContainer from "./app/main";
+import apiRoutes from "./client-rest/routes";
+import requestLogger from './client-rest/middleware/request-logger';
 import process from 'process'
 import path from "path";
 
@@ -12,7 +12,8 @@ const container = DIContainer();
 
 function rootHandler(app){
   if (environment === "production"){
-    app.use(express.static(path.join(__dirname,'../../public')))
+    console.log("************** using production route **************")
+    app.use(express.static(path.join(__dirname,'public')))
   } else {
     app.get("/", (req, res) => {
       res.send("hello");
@@ -25,7 +26,7 @@ module.exports = (port = 5000) => {
   const app = express();
 
   app.use(cors({
-    origin: /\.pink-shrimp-90\.telebit\.io$/
+    origin: [/ipg-app\.herokuapp\.com/, /\.pink-shrimp-90\.telebit\.io$/]
   }));
   app.use((req, _res, next) => {
     req.scope = container.createScope();
