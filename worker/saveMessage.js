@@ -3,12 +3,13 @@ const trike = require('trike');
 const moment = require('moment');
 
 module.exports = message => {
-  const clientConfig = {
-    connectionString: process.env.NODE_ENV === 'production' ? process.env.DATABASE_URL : "postgres://devansisson:01234@127.0.0.1:5432/devansisson"; //"postgres://USERNAME:PASSWORD@HOST:PORT/DB",
-    ssl: process.env.NODE_ENV === 'production'
+  const clientConfig = process.env.NODE_ENV === 'production' ?
+  {
+    connectionString: process.env.DATABASE_URL,
+    ssl: true
+  } : {
+    connectionString: "postgres://devansisson:01234@127.0.0.1:5432/devansisson"
   }
-
-  console.log(JSON.stringify(clientConfig))
 
   const [err, client] = trike(() => new Client(clientConfig));
 

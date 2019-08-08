@@ -3,9 +3,10 @@ import trike from "trike";
 
 
 class Api {
-  constructor(baseUrl) {
+  constructor(apiURL) {
+    console.log(apiURL)
     this.api = axios.create({
-      baseURL: baseUrl
+      baseURL: `${apiURL}/api/`
     });
   }
 
@@ -146,4 +147,4 @@ class Api {
 
 
  // TODO: set BASE_URL in client/package.json
-export default new Api(process.env.BASE_URL || "https://ipg-app.herokuapp.com/api/");
+export default new Api(process.env.REACT_APP_DEV_API || "https://ipg-app.herokuapp.com");
