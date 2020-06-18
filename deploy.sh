@@ -40,7 +40,7 @@ cd deploy;
 git init;
 git add .;git commit -m 'deployment $currentDate';
 
-git remote add origin git@github.com:ipg-devs/conveyor-wear-monitoring.git;
+git remote add origin https://github.com/ipg-devs/conveyor-wear-monitoring.git;
 
 git push origin master:release --force;
 
