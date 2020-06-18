@@ -6,10 +6,18 @@ ENV VARS:
 * AMQP_URL : *the rabbitMQ server uri* 
 * JWT_SECRET : *the random token that we use to sign JWTs*
 
+###File structure
+*Front-end - ./client
+*Back-End - ./server
+*Rabbit - ./worker
+
 ###Add column to dashboard
-- goto "client/src/Store/index.jsx"
--tableOrder = key from message
--tableColumns = label in the column
+*goto "./client/src/Store/index.jsx"
+*tableOrder = key from message
+*tableColumns = label in the column
+
+###Change SQL queries
+*./server/src/app/external/sql
 
 ###Build and deploy
-in root directory type "npm run deploy"
+*in root directory type "npm run deploy"
