@@ -27,16 +27,17 @@ class Api {
       }, 1000)
     );
 
-  getTableData = () => {
+  getTableData = (ids) => {
     const [err, token] = trike(() => localStorage.getItem("token"));
 
     if (err) {
       localStorage.removeItem("token");
       return Promise.reject(err);
     }
-
     return this.api
-      .get("bwms/", {
+      .post("bwms/", {
+        ids: JSON.stringify(ids)
+      },{
         headers: {
           authorization: `bearer ${ token }`
         }

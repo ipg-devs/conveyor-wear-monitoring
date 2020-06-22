@@ -62,9 +62,7 @@ userRouter
   })
   .post("/login", async (req, res, next) => {
     const login = req.scope.resolve("login");
-    const getUserByUsername = req.scope.resolve("getUserByUsername")
     const { username, password } = req.body;
-
     const [err, { token, user }] = await trike(() => login({ username, password }));
 
     if (err) return next(err);
