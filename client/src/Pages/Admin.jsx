@@ -66,7 +66,7 @@ const Admin = ({ history, enqueueSnackbar }) => {
 
   return (
     <Container
-      style={{ maxWidth: 1400, minHeight: 800, padding: 16, margin: "0 auto" }}
+      style={{ maxWidth: 1600, minHeight: 800, padding: 16, margin: "0 auto" }}
       className={classes.root}
     >
       <LoadingModal open={loading} />

@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 const TablePage = ({ history, enqueueSnackbar }) => {
   const { state, dispatch } = useContext(Store);
-  const { tableRows, tableColumns, tableOrder, loading, loggingOut } = state;
+  const { tableRows, tableColumns, tableOrder, loading, loggingOut, loggedInUser } = state;
 
   useEffect(() => {
     if (loggingOut) return history.push("/");
@@ -40,7 +40,7 @@ const TablePage = ({ history, enqueueSnackbar }) => {
       payload: true
     });
     api
-      .getTableData()
+      .getTableData(loggedInUser.site_id)
       .then(data => {
         dispatch({
           field: "tableRows",
@@ -70,9 +70,9 @@ const TablePage = ({ history, enqueueSnackbar }) => {
   }, []);
 
   const classes = useStyles();
-
+  console.log(state.loggedInUser, 'user')
   return (
-    <Container style={{ maxWidth: 1400, padding: 16, margin: "0 auto" }}>
+    <Container style={{ maxWidth: 1500, padding: 16, margin: "0 auto" }}>
       <LoadingModal open={loading} />
 
       <Paper className={classes.root}>
