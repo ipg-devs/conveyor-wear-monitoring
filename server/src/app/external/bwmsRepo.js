@@ -4,7 +4,6 @@ const moment = require('moment');
 module.exports = () => ({
   getDataByIds: async (ids) => {
     const { rows } = await db.query('SELECT message from bwmsmessages ORDER BY timestamp DESC')
-    console.log(ids, 'query ids..')
     return rows.reduce((flatArray, objectRow)=> {
       if (ids.indexOf(objectRow.message.siteid) > -1) {
         flatArray.push(objectRow.message)

@@ -7,7 +7,6 @@ const bwmsRouter = new Router();
 bwmsRouter
   .post("/", verifyToken, async (req, res, next) => {
     const {ids} = req.body;
-    console.log(ids, 'router ids...')
     const getBwmsBySiteId = req.scope.resolve("getBwmsBySiteId");
     const [err, result] = await trike(() => getBwmsBySiteId(JSON.parse(ids)));
     if (err) return next(err);
