@@ -147,4 +147,4 @@ class Api {
 
 
  // TODO: set BASE_URL in client/package.json
-export default new Api(process.env.REACT_APP_DEV_API || "https://ipg-app.herokuapp.com");
+export default new Api(process.env.NODE_ENV === 'production' ? "https://ipg-app.herokuapp.com" : "http://localhost:5000");

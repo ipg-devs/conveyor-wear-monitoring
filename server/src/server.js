@@ -9,7 +9,6 @@ import path from "path";
 const environment = process.env.NODE_ENV || 'development'
 
 const container = DIContainer();
-
 function rootHandler(app){
   if (environment === "production"){
     console.log("************** using production route **************")
@@ -26,7 +25,7 @@ module.exports = (port = 5000) => {
   const app = express();
 
   app.use(cors({
-    origin: [/ipg-app\.herokuapp\.com/, /\.pink-shrimp-90\.telebit\.io$/]
+    origin: environment === "production" ? [/ipg-app\.herokuapp\.com/, /\.pink-shrimp-90\.telebit\.io$/] : '*'
   }));
   app.use((req, _res, next) => {
     req.scope = container.createScope();

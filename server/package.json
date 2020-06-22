@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "JWT_SECRET=Super-Secret-Secret nodemon --exec babel-node ./bin/www",
+    "dev": "nodemon --exec babel-node ./bin/www",
     "build": "babel src --out-dir server"
   },
   "dependencies": {
