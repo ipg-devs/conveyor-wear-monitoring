@@ -10,28 +10,14 @@ export default withRouter(props => {
   function handleClick() {
     return event => {
       event.preventDefault();
-      dispatch({
-        field: "loading",
-        payload: true
-      });
       api
         .logout()
-        .then(data => {
-          props.history.push("/");
-          return data;
-        })
-        .then(data =>
-          dispatch({
-            field: "loggedIn",
-            payload: data
-          })
-        )
         .then(() =>
           dispatch({
-            field: "loading",
+            field: "loggedIn",
             payload: false
           })
-        );
+        )
     };
   }
 

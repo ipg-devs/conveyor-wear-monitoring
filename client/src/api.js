@@ -23,8 +23,8 @@ class Api {
       setTimeout(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("admin");
-        resolve(true);
-      }, 1000)
+        resolve();
+      })
     );
 
   getTableData = (ids) => {
