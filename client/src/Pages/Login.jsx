@@ -59,7 +59,7 @@ function Login(props) {
       .then(() => props.history.push("/dashboard"))
       .catch(err => {
         console.log(err);
-        props.enqueueSnackbar("Error logging in", {
+        props.enqueueSnackbar(`Error logging in ${err}`, {
           variant: "error"
         });
         dispatch({

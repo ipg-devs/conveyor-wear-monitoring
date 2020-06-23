@@ -63,11 +63,10 @@ userRouter
   .post("/login", async (req, res, next) => {
     const login = req.scope.resolve("login");
     const { username, password } = req.body;
-    const [err, { token, user }] = await trike(() => login({ username, password }));
+    const [err, result] = await trike(() => login({ username, password }));
 
     if (err) return next(err);
-
-
+    const {token, user} = result;
     return res.json({ token, user });
   });
 

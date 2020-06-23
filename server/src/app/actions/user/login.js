@@ -12,6 +12,7 @@ const login = ({ authenticateUser, userRepo }) => async user => {
   }
 
   const [userErr, userRes] = await trike(() => userRepo.getUserInfoByUsername(user))
+  if (userErr) throw 'check login credentials, user or password are incorrect';
 
   const token = await jwt.sign({ user: user.username }, process.env.JWT_SECRET, {
     expiresIn: "10h"

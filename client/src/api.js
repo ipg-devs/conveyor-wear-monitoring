@@ -14,7 +14,7 @@ class Api {
     this.api
       .post("user/login", { username: username, password: password })
       .then(({ data }) => {
-        if (data.error) throw data;
+        if (data.error) throw data.error;
         return data;
       });
 
