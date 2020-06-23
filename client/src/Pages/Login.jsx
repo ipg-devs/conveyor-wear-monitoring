@@ -58,8 +58,8 @@ function Login(props) {
       })
       .then(() => props.history.push("/dashboard"))
       .catch(err => {
-        console.log(err);
-        props.enqueueSnackbar(`Error logging in ${err}`, {
+        console.log(`Error logging in: ${err}`);
+        props.enqueueSnackbar(`Error logging in.`, {
           variant: "error"
         });
         dispatch({
@@ -69,10 +69,10 @@ function Login(props) {
       });
   };
 
-  if (state.loggedIn) {
-    props.history.push("/dashboard");
-    return null;
-  }
+  // if (state.loggedIn) {
+  //   props.history.push("/dashboard");
+  //   return null;
+  // }
 
   return (
     <Container className={classes.login}>

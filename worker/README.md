@@ -1,6 +1,6 @@
 Requires 2 URLS
 
-Database `DATABASE_URL`
+Database `DATABASE`
 AMQP `AMQP_URL`
 
 'amqp://haeqvhio:v5m73o5450NiHZxYOtbtc2kqNMpFtz7d@shrimp.rmq.cloudamqp.com/haeqvhio'

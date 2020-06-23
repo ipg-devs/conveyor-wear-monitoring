@@ -23,8 +23,8 @@ class Api {
       setTimeout(() => {
         localStorage.removeItem("token");
         localStorage.removeItem("admin");
-        resolve(true);
-      }, 1000)
+        resolve();
+      })
     );
 
   getTableData = (ids) => {
@@ -148,4 +148,4 @@ class Api {
 
 
  // TODO: set BASE_URL in client/package.json
-export default new Api(process.env.NODE_ENV === 'production' ? "https://ipg-app.herokuapp.com" : "http://localhost:5000");
+export default new Api(process.env.NODE_ENV === 'production' ? process.env.CURRENT_SITE : "http://localhost:5000");
