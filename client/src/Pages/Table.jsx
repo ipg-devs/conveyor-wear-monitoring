@@ -41,17 +41,17 @@ const TablePage = ({ history, enqueueSnackbar }) => {
     });
     api
       .getTableData(loggedInUser.site_id)
-      .then(data => {
-        dispatch({
+      .then(async data => {
+        await dispatch({
           field: "tableRows",
           payload: data
         });
-        dispatch({
+        await dispatch({
           field: "loading",
           payload: false
         });
       })
-      .catch(() => {
+      .catch((err) => {
         enqueueSnackbar("Session Timed Out", {
           variant: "error",
           preventDuplicate: true
@@ -70,7 +70,6 @@ const TablePage = ({ history, enqueueSnackbar }) => {
   }, []);
 
   const classes = useStyles();
-  console.log(state.loggedInUser, 'user')
   return (
     <Container style={{ maxWidth: 1500, padding: 16, margin: "0 auto" }}>
       <LoadingModal open={loading} />
