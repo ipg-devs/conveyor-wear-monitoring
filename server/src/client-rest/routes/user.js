@@ -60,14 +60,5 @@ userRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/login", async (req, res, next) => {
-    const login = req.scope.resolve("login");
-    const { username, password } = req.body;
-    const [err, result] = await trike(() => login({ username, password }));
-
-    if (err) return next(err);
-    const {token, user} = result;
-    return res.json({ token, user });
-  });
 
 export default userRouter;

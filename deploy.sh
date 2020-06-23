@@ -1,6 +1,3 @@
-#! /bin/bash
-currentDate=`date`
-
 # clean deployment directory
 rm -rf deploy; echo "Deleting existing folder"
 mkdir deploy; echo "Making new folder"
@@ -32,6 +29,7 @@ echo "DONE: Build Server"
 echo "build client"
 cd client;
 npm run build;
+mv build ../deploy/server/public;
 cd ..;
 echo "DONE: build client"
 

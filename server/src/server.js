@@ -36,6 +36,15 @@ module.exports = (port = 5000) => {
 
   rootHandler(app);
   app.use("/api", apiRoutes);
+  app.use("/login", async (req, res, next) => {
+    const login = req.scope.resolve("login");
+    const { username, password } = req.body;
+    const result = await login({ username, password });
+
+    if (!result) return next({status: 503, message: 'error logging in'});
+    const {token, user} = result;
+    return res.json({ token, user });
+  });
 
   // Error handling middleware
   app.use((err, _req, res, _next) => {

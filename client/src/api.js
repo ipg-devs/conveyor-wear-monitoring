@@ -6,13 +6,13 @@ class Api {
   constructor(apiURL) {
     console.log(apiURL)
     this.api = axios.create({
-      baseURL: `${apiURL}/api/`
+      baseURL: `${apiURL}/`
     });
   }
 
   login = (username, password) =>
     this.api
-      .post("user/login", { username: username, password: password })
+      .post("/login", { username: username, password: password })
       .then(({ data }) => {
         if (data.error) throw data.error;
         return data;
@@ -35,7 +35,7 @@ class Api {
       return Promise.reject(err);
     }
     return this.api
-      .post("bwms/", {
+      .post("/api/bwms/", {
         ids: JSON.stringify(ids)
       },{
         headers: {
@@ -58,7 +58,7 @@ class Api {
     }
 
     return this.api
-      .get("user/", {
+      .get("/api/user/", {
         headers: {
           authorization: `bearer ${ token }`
         }
@@ -76,7 +76,7 @@ class Api {
 
     return this.api
       .post(
-        "user/create",
+        "/api/user/create",
         { ...user },
         {
           headers: {
@@ -97,7 +97,7 @@ class Api {
 
     return this.api
       .post(
-        "user/update-password",
+        "/api/user/update-password",
         { username, newPassword },
         {
           headers: {
@@ -117,7 +117,7 @@ class Api {
     }
 
     return this.api
-      .get("site", {
+      .get("/api/site", {
         headers: {
           authorization: `bearer ${ token }`
         }
@@ -134,7 +134,7 @@ class Api {
     }
     return this.api
       .post(
-        "site/create",
+        "/api/site/create",
         { ...site },
         {
           headers: {
@@ -148,4 +148,4 @@ class Api {
 
 
  // TODO: set BASE_URL in client/package.json
-export default new Api(process.env.NODE_ENV === 'production' ? process.env.CURRENT_SITE : "http://localhost:5000");
+export default new Api(process.env.NODE_ENV === 'production' ? "https://ipg-app.herokuapp.com" : "http://localhost:5000");
