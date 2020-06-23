@@ -97,7 +97,7 @@ const SitePanel = () => {
             <Typography>
               date created: <TimeStamp>{site.createdDate}</TimeStamp>
             </Typography>
-            <Button
+            {/* <Button
               variant="outlined"
               color="primary"
               style={{
@@ -108,7 +108,7 @@ const SitePanel = () => {
               onClick={() => console.log("Hello")}
             >
               Say Hello!{" "}
-            </Button>
+            </Button> */}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       ))}
