@@ -1,18 +1,17 @@
 import { Router } from "express";
 import trike from "trike";
-import verifyToken from '../middleware/verifyToken'
 
 const siteRouter = new Router();
 
 siteRouter
-  .get("/", verifyToken, async (req, res, next) => {
+  .get("/", async (req, res, next) => {
     const getAllSites = req.scope.resolve("getAllSites");
     const [err, result] = await trike(() => getAllSites());
 
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/create", verifyToken, async (req, res, next) => {
+  .post("/create", async (req, res, next) => {
     const [e, createSite] = trike(() =>
       req.scope.resolve("createSite")
     );
@@ -24,14 +23,14 @@ siteRouter
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/update", verifyToken, async (req, res, next) => {
+  .post("/update", async (req, res, next) => {
     const updateSite = req.scope.resolve("updateSite");
     const [err, result] = await trike(() => updateSite(req.body.Site));
 
     if (err) return next(err);
     return res.json(result);
   })
-  .post("/:id", verifyToken, async (req, res, next) => {
+  .post("/:id", async (req, res, next) => {
     const destroySite = req.scope.resolve("destroySite");
     const [err, result] = await trike(() => destroySite(req.param.id));
 
