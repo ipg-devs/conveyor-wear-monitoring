@@ -6,7 +6,7 @@ class Api {
   constructor(apiURL) {
     console.log(apiURL)
     this.api = axios.create({
-      baseURL: `${apiURL}/`
+      baseURL: `${apiURL}`
     });
   }
 
@@ -35,7 +35,7 @@ class Api {
       return Promise.reject(err);
     }
     return this.api
-      .post("api/bwms/", {
+      .post("/api/bwms", {
         ids: JSON.stringify(ids)
       },{
         headers: {
@@ -58,7 +58,7 @@ class Api {
     }
 
     return this.api
-      .get("api/user/", {
+      .get("/api/user", {
         headers: {
           authorization: `bearer ${ token }`
         }

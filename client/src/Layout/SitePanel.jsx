@@ -9,8 +9,7 @@ import {
   ExpansionPanelSummary,
   Fab,
   Modal,
-  Typography,
-  Button
+  Typography
 } from "@material-ui/core";
 
 import { Store } from "../Store";
@@ -97,18 +96,6 @@ const SitePanel = () => {
             <Typography>
               date created: <TimeStamp>{site.createdDate}</TimeStamp>
             </Typography>
-            {/* <Button
-              variant="outlined"
-              color="primary"
-              style={{
-                width: "200px",
-                marginTop: "16px",
-                marginLeft: "auto"
-              }}
-              onClick={() => console.log("Hello")}
-            >
-              Say Hello!{" "}
-            </Button> */}
           </ExpansionPanelDetails>
         </ExpansionPanel>
       ))}
