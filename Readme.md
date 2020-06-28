@@ -21,3 +21,7 @@ ENV VARS:
 
 ###Build and deploy
 *in root directory type "npm run deploy"
+
+Running local environment
+-set server JWT_SECRET env variable -'export JWT_SECRET="xxxxxxxxx"'
+-'npm run dev'
