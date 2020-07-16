@@ -1,5 +1,6 @@
 #! /bin/bash
-currentDate=`date`
+currentDate=$(date +'%d/%m/%Y')
+echo $currentDate
 
 # clean deployment directory
 rm -rf deploy; echo "Deleting existing folder"
@@ -32,15 +33,16 @@ echo "DONE: Build Server"
 echo "build client"
 cd client;
 npm run build;
+mv build ../deploy/server/public
 cd ..;
 echo "DONE: build client"
 
-echo "finish deploy"
-cd deploy;
-git init;
-git add .;git commit -m 'deployment $currentDate';
+# echo "finish deploy"
+# cd deploy;
+# git init;
+# git add .;git commit -m 'deployment $currentDate';
 
-git remote add origin https://github.com/ipg-devs/conveyor-wear-monitoring.git;
+# git remote add origin https://github.com/ipg-devs/conveyor-wear-monitoring.git;
 
-git push origin master:release --force;
+# git push origin master:release --force;
 

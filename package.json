@@ -8,7 +8,8 @@
     "development-server": "cd server && npm run dev",
     "development-worker": "cd worker && npm run dev",
     "dev": "concurrently \"npm run development-*\"",
-    "deploy": "./deploy.sh"
+    "deploy": "./deploy.sh",
+    "windeploy": "sh deploy.sh"
   },
   "keywords": [],
   "author": "",
